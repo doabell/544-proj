@@ -11,3 +11,5 @@ wheels/
 
 # DH data
 dh-exchange.json
+dh-quantum.png
+dh-quantum-circuit.png

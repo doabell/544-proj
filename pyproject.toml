@@ -5,6 +5,12 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "matplotlib>=3.10.1",
+    "mpl-fontkit>=0.5.1",
+    "numpy>=2.2.5",
+    "pylatexenc>=2.10",
+    "qiskit>=2.0.0",
+    "qiskit-aer>=0.17.0",
     "rich>=14.0.0",
 ]
 

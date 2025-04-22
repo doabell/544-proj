@@ -139,9 +139,7 @@ def dlp_from_period(w1: int, w2: int, group_order_q: int) -> int:
         # Need modular inverse of w2 mod q
         w2_inv = pow(w2, -1, group_order_q)
         recovered_private_key = (-w1 * w2_inv) % group_order_q
-        console.print(
-            f"[dim]  Calculated w2^-1 mod q = {fmt_hex(w2_inv)}[/dim]"
-        )
+        console.print(f"[dim]  Calculated w2^-1 mod q = {fmt_hex(w2_inv)}[/dim]")
         console.print("[dim]  Calculated k = (-w1 * w2^-1) mod q[/dim]")
         console.print(
             "[bold green]Calculation Complete:[/bold green] Recovered private key k."
@@ -157,9 +155,7 @@ def dlp_from_period(w1: int, w2: int, group_order_q: int) -> int:
         return 0  # Indicate failure
 
 
-def dh_ss_eve(
-    other_public_key: int, recovered_private_key: int, p: int
-) -> int:
+def dh_ss_eve(other_public_key: int, recovered_private_key: int, p: int) -> int:
     """Generate the shared secret using the recovered private key."""
     with Progress(
         SpinnerColumn(),
@@ -249,13 +245,9 @@ def main() -> None:
     )
     # For the safe prime p=2q+1 used, the order of g=2 is q=(p-1)/2
     group_order_q = (p - 1) // 2
-    console.print(
-        f"[dim]Group order q = (p-1)/2 = {fmt_hex(group_order_q)}[/dim]"
-    )
+    console.print(f"[dim]Group order q = (p-1)/2 = {fmt_hex(group_order_q)}[/dim]")
 
-    w1, w2 = shors_find_period(
-        g, alice_public, p, group_order_q, alice_private_actual
-    )
+    w1, w2 = shors_find_period(g, alice_public, p, group_order_q, alice_private_actual)
 
     # PK from period
     recovered_alice_private = dlp_from_period(w1, w2, group_order_q)
@@ -287,18 +279,14 @@ def main() -> None:
         "\n[bold yellow]Step 4:[/bold yellow] [cyan]Eve computes the shared secret using Bob's public key (B) and the recovered private key (a)...[/cyan]"
     )
     # S = B^a mod p
-    eve_shared_secret = dh_ss_eve(
-        bob_public, recovered_alice_private, p
-    )
+    eve_shared_secret = dh_ss_eve(bob_public, recovered_alice_private, p)
 
     result_table = Table(show_header=True, header_style="bold red")
     result_table.add_column("Party")
     result_table.add_column("Shared Secret Calculation")
     result_table.add_column("Computed Secret (partial hex)")
 
-    result_table.add_row(
-        "Eve", "S_eve = B^a mod p", fmt_hex(eve_shared_secret)
-    )
+    result_table.add_row("Eve", "S_eve = B^a mod p", fmt_hex(eve_shared_secret))
     result_table.add_row(
         "Original (Alice/Bob)",
         "S = g^(ab) mod p",

@@ -240,12 +240,8 @@ def main() -> None:
     console.print(
         "\n[bold green]Step 4:[/bold green] [yellow]Simulating Public Key Exchange...[/yellow]"
     )
-    console.print(
-        f"Alice sends A = {fmt_hex(alice_public)} to Bob [bold]→[/bold]"
-    )
-    console.print(
-        f"Bob sends B = {fmt_hex(bob_public)} to Alice [bold]←[/bold]"
-    )
+    console.print(f"Alice sends A = {fmt_hex(alice_public)} to Bob [bold]→[/bold]")
+    console.print(f"Bob sends B = {fmt_hex(bob_public)} to Alice [bold]←[/bold]")
     console.print("[dim](Eve intercepts A, B, p, g)[/dim]")
 
     # Generate shared secrets

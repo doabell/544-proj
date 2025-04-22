@@ -3,6 +3,13 @@
 1. Install `uv`:
 
 ```bash
+make uv
+```
+
+Or:
+
+
+```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 

@@ -1,4 +1,4 @@
-.PHONY: default list uv ruff dh clean clean-dh clean-rsa
+.PHONY: default list uv ruff dh rsa clean clean-dh clean-rsa
 
 default: list
 
@@ -23,6 +23,12 @@ dh:
 	@echo "uv run dh-impl.py"
 	@echo "uv run dh-crack.py"
 	@echo "uv run dh-quantum.py"
+
+rsa:
+	uv run rsa-crack.py --n 119
+
+rsa-large:
+	uv run rsa-crack.py --n 2059655341
 
 clean: clean-dh clean-rsa
 	@echo "All clean targets executed"
